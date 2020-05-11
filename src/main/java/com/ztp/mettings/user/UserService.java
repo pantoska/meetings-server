@@ -1,6 +1,6 @@
 package com.ztp.mettings.user;
 
-import com.ztp.mettings.security.exception.common.ResourceNotFoundProblem;
+import com.ztp.mettings.auth.exception.common.ResourceNotFoundProblem;
 import com.ztp.mettings.user.dto.UpdateUserRequestDto;
 import com.ztp.mettings.user.dto.UserInfoDto;
 import com.ztp.mettings.user.dto.UserPersonalDataDto;
