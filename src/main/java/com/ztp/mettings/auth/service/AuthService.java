@@ -1,9 +1,9 @@
 package com.ztp.mettings.auth.service;
 
 import com.ztp.mettings.Constants;
-import com.ztp.mettings.auth.exception.common.BadRequestProblem;
-import com.ztp.mettings.auth.exception.common.ConflictProblem;
-import com.ztp.mettings.auth.exception.common.UnauthorizedProblem;
+import com.ztp.mettings.error.common.BadRequestProblem;
+import com.ztp.mettings.error.common.ConflictProblem;
+import com.ztp.mettings.error.common.UnauthorizedProblem;
 import com.ztp.mettings.auth.cookie.CookieUtils;
 import com.ztp.mettings.auth.model.AccessToken;
 import com.ztp.mettings.auth.security.JwtTokenProvider;

@@ -1,7 +1,8 @@
 package com.ztp.mettings.event;
 
-import com.ztp.mettings.auth.exception.common.ResourceNotFoundProblem;
+import com.ztp.mettings.error.common.ResourceNotFoundProblem;
 import com.ztp.mettings.auth.security.UserPrincipal;
+import com.ztp.mettings.error.common.UnauthorizedProblem;
 import com.ztp.mettings.event.comment.CommentDto;
 import com.ztp.mettings.event.comment.CommentEntity;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ public class EventService {
         this.eventRepository = eventRepository;
     }
 
-    EventDto createEvent(UserPrincipal userPrincipal, EventDto eventDto){
+    EventDto createEvent(UserPrincipal userPrincipal, EventDto eventDto) {
         var userId = userPrincipal.getId();
         var eventEntity = eventDto.toEventEntity(userId);
         eventRepository.save(eventEntity);
@@ -28,7 +29,8 @@ public class EventService {
         return eventEntity.toEventDto();
     }
 
-    CommentDto createComment(String id, UserPrincipal userPrincipal, CommentDto commentDto){
+    CommentDto createComment(String id, UserPrincipal userPrincipal,
+                             CommentDto commentDto) {
         var userId = userPrincipal.getId();
         var event = findEventById(id);
         List<CommentEntity> comments = event.getCommentList();
@@ -38,39 +40,50 @@ public class EventService {
         return commentEntity.toCommentDto();
     }
 
-    EventDto updateEvent(UserPrincipal userPrincipal, EventDto eventDto){
-
+    EventDto updateEvent(UserPrincipal userPrincipal, EventDto eventDto) {
+        var userId = userPrincipal.getId();
         var findEvent = findEventById(eventDto.getId());
 
-        findEvent.setUserId(userPrincipal.getId());
-        findEvent.setImage(eventDto.getImage());
-        findEvent.setType(eventDto.getType());
-        findEvent.setTitle(eventDto.getTitle());
-        findEvent.setPlace(eventDto.getPlace());
-        findEvent.setDescription(eventDto.getDescription());
+        if (findEvent.getUserId().equals(userId)) {
 
-        eventRepository.save(findEvent);
+            findEvent.setUserId(userPrincipal.getId());
+            findEvent.setImage(eventDto.getImage());
+            findEvent.setType(eventDto.getType());
+            findEvent.setTitle(eventDto.getTitle());
+            findEvent.setPlace(eventDto.getPlace());
+            findEvent.setDescription(eventDto.getDescription());
+
+            eventRepository.save(findEvent);
+        } else {
+            throw new UnauthorizedProblem("User is not authorized to update event");
+        }
 
         return findEvent.toEventDto();
     }
 
-    EventDto getEvent(String id){
+    EventDto getEvent(String id) {
         var findEvent = findEventById(id);
         return findEvent.toEventDto();
     }
 
-    List<EventDto> getAllEvents(){
+    List<EventDto> getAllEvents() {
         return eventRepository.findAll().stream().map(EventEntity::toEventDto).collect(Collectors.toList());
     }
 
-    void deleteEvent(String id){
+    void deleteEvent(UserPrincipal userPrincipal, String id) {
+        var userId = userPrincipal.getId();
         var findEvent = findEventById(id);
-        eventRepository.delete(findEvent);
+        if (findEvent.getUserId().equals(userId)) {
+            eventRepository.delete(findEvent);
+        } else {
+            throw new UnauthorizedProblem("User is not authorized to delete event");
+        }
     }
 
-    private EventEntity findEventById(String id){
+    private EventEntity findEventById(String id) {
         return eventRepository
                 .findById(id)
-                .orElseThrow(() -> new ResourceNotFoundProblem("Event", "id", id));
+                .orElseThrow(() -> new ResourceNotFoundProblem("Event", "id",
+                        id));
     }
 }

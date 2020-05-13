@@ -3,6 +3,8 @@ package com.ztp.mettings.event.comment;
 import lombok.Getter;
 import org.bson.types.ObjectId;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
@@ -10,6 +12,8 @@ public class CommentDto {
 
     private ObjectId id;
     private String userId;
+    @NotNull
+    @Valid
     private String content;
     private LocalDateTime date;
 

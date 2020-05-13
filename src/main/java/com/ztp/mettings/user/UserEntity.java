@@ -1,5 +1,6 @@
 package com.ztp.mettings.user;
 
+import com.ztp.mettings.user.dto.AdminPanelUserDataDto;
 import com.ztp.mettings.user.dto.UserPersonalDataDto;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -38,4 +39,7 @@ public class UserEntity {
         );
     }
 
+    public AdminPanelUserDataDto toAdminPanelUserDataDto() {
+        return new AdminPanelUserDataDto(id, firstName, lastName, email, roles);
+    }
 }

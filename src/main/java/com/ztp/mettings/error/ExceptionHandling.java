@@ -1,4 +1,4 @@
-package com.ztp.mettings.auth.exception;
+package com.ztp.mettings.error;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

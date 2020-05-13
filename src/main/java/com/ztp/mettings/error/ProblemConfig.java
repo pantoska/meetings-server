@@ -1,4 +1,4 @@
-package com.ztp.mettings.auth.exception;
+package com.ztp.mettings.error;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;

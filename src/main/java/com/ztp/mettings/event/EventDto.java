@@ -3,17 +3,29 @@ package com.ztp.mettings.event;
 import com.ztp.mettings.event.comment.CommentEntity;
 import lombok.Getter;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
 public class EventDto {
 
+
     private String id;
     private String userId;
+    @NotNull
+    @Valid
     private String title;
+    @NotNull
+    @Valid
     private String description;
+    @NotNull
+    @Valid
     private String type;
+    @NotNull
+    @Valid
     private String place;
+
     private String image;
     private List<CommentEntity> commentList;
 

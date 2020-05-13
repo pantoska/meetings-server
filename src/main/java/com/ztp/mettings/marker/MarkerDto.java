@@ -2,12 +2,22 @@ package com.ztp.mettings.marker;
 
 import lombok.Getter;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 @Getter
 public class MarkerDto {
 
+
     private String id;
+    @NotNull
+    @Valid
     private Double latitude;
+    @NotNull
+    @Valid
     private Double longitude;
+    @NotNull
+    @Valid
     private String description;
 
     public MarkerDto() {

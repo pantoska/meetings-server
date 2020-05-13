@@ -1,6 +1,6 @@
 package com.ztp.mettings.marker;
 
-import com.ztp.mettings.auth.exception.common.ResourceNotFoundProblem;
+import com.ztp.mettings.error.common.ResourceNotFoundProblem;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

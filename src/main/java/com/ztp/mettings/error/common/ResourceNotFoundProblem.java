@@ -1,4 +1,4 @@
-package com.ztp.mettings.auth.exception.common;
+package com.ztp.mettings.error.common;
 
 import org.springframework.util.StringUtils;
 import org.zalando.problem.AbstractThrowableProblem;
