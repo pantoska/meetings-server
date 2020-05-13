@@ -22,7 +22,7 @@ public class JwtTokenProvider {
 
     private final AppTokenConfig appTokenConfig;
 
-    JwtTokenProvider(AppTokenConfig appTokenConfig) {
+    public JwtTokenProvider(AppTokenConfig appTokenConfig) {
         this.appTokenConfig = appTokenConfig;
     }
 

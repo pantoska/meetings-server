@@ -9,7 +9,6 @@ import com.ztp.mettings.event.EventRepository;
 import com.ztp.mettings.user.UserEntity;
 import com.ztp.mettings.user.UserRepository;
 import com.ztp.mettings.user.dto.AdminPanelUserDataDto;
-import com.ztp.mettings.user.dto.UserPersonalDataDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

@@ -25,7 +25,7 @@ public class UserPrincipal implements UserDetails {
     @Setter(AccessLevel.PRIVATE)
     private Map<String, Object> attributes;
 
-    UserPrincipal(
+    public UserPrincipal(
             String id,
             String email,
             String password,
