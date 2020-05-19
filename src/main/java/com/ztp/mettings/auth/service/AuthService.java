@@ -1,6 +1,7 @@
 package com.ztp.mettings.auth.service;
 
 import com.ztp.mettings.Constants;
+import com.ztp.mettings.auth.security.UserPrincipal;
 import com.ztp.mettings.error.common.BadRequestProblem;
 import com.ztp.mettings.error.common.ConflictProblem;
 import com.ztp.mettings.error.common.UnauthorizedProblem;
@@ -11,6 +12,7 @@ import com.ztp.mettings.user.Role;
 import com.ztp.mettings.user.UserEntity;
 import com.ztp.mettings.user.UserRepository;
 import com.ztp.mettings.user.dto.ApiResponseDto;
+import com.ztp.mettings.user.dto.ApiResponseLogoutDto;
 import com.ztp.mettings.user.dto.AuthResponseDto;
 import com.ztp.mettings.user.dto.LoginRequestDto;
 import com.ztp.mettings.user.dto.RegisterRequestDto;
@@ -19,12 +21,15 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
+import java.util.Collection;
 import java.util.Set;
 
 @Service
@@ -75,8 +80,9 @@ public class AuthService {
 
             AccessToken accessToken = tokenProvider.createAccessToken(authentication);
             CookieUtils.addCookie(response, Constants.ACCESS_TOKEN_COOKIE, accessToken.getToken());
+            UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
 
-            return new AuthResponseDto(accessToken.getExpiryDate());
+            return new AuthResponseDto(principal.getAuthorities(), accessToken.getExpiryDate());
         } catch (BadCredentialsException ex) {
             throw new UnauthorizedProblem(ex.getMessage());
         } catch (DisabledException ex) {
@@ -84,10 +90,10 @@ public class AuthService {
         }
     }
 
-    public ApiResponseDto logoutUser(HttpServletRequest request,
+    public ApiResponseLogoutDto logoutUser(HttpServletRequest request,
                                      HttpServletResponse response) {
         CookieUtils.deleteCookie(request, response, Constants.ACCESS_TOKEN_COOKIE);
-        return new ApiResponseDto("Logout successfully");
+        return new ApiResponseLogoutDto("Logout successfully");
     }
 
     private UserEntity mapToUserEntity(

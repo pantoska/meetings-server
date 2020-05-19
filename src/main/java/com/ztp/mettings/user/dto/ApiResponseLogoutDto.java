@@ -1,14 +1,13 @@
 package com.ztp.mettings.user.dto;
 
-import com.ztp.mettings.user.UserEntity;
 import lombok.Getter;
 
 @Getter
-public final class ApiResponseDto {
+public class ApiResponseLogoutDto {
 
     private final String message;
 
-    public ApiResponseDto(String message) {
+    public ApiResponseLogoutDto(String message) {
         this.message = message;
     }
 }

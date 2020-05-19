@@ -2,6 +2,7 @@ package com.ztp.mettings.auth.controller;
 
 import com.ztp.mettings.auth.service.AuthService;
 import com.ztp.mettings.user.dto.ApiResponseDto;
+import com.ztp.mettings.user.dto.ApiResponseLogoutDto;
 import com.ztp.mettings.user.dto.AuthResponseDto;
 import com.ztp.mettings.user.dto.LoginRequestDto;
 import com.ztp.mettings.user.dto.RegisterRequestDto;
@@ -40,7 +41,7 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    ResponseEntity<ApiResponseDto> logoutUser(
+    ResponseEntity<ApiResponseLogoutDto> logoutUser(
             HttpServletRequest request, HttpServletResponse response) {
         var result = authService.logoutUser(request, response);
         return ResponseEntity.ok(result);

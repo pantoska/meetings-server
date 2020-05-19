@@ -6,6 +6,8 @@ import com.ztp.mettings.user.dto.LoginRequestDto;
 import com.ztp.mettings.user.dto.UpdateUserRequestDto;
 import com.ztp.mettings.user.dto.UserInfoDto;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Date;
@@ -25,7 +27,7 @@ public class DtoTests {
     @Test
     public void whenCreateDto_thenReturnAuthReponseDto() {
         // when
-        var result = new AuthResponseDto("100000");
+        var result = new AuthResponseDto(Set.of(new SimpleGrantedAuthority("USER")),"100000");
 
         // then
         assertThat(result.getExpiryDate()).isEqualTo("100000");
