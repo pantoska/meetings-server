@@ -80,9 +80,8 @@ public class AuthService {
 
             AccessToken accessToken = tokenProvider.createAccessToken(authentication);
             CookieUtils.addCookie(response, Constants.ACCESS_TOKEN_COOKIE, accessToken.getToken());
-            UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
 
-            return new AuthResponseDto(principal.getAuthorities(), accessToken.getExpiryDate());
+            return new AuthResponseDto(accessToken.getExpiryDate());
         } catch (BadCredentialsException ex) {
             throw new UnauthorizedProblem(ex.getMessage());
         } catch (DisabledException ex) {

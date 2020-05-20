@@ -12,10 +12,8 @@ public final class AuthResponseDto {
 
     private final String tokenType = "Bearer";
     private final String expiryDate;
-    private final Collection<? extends GrantedAuthority> authorities;
 
-    public AuthResponseDto(Collection<? extends GrantedAuthority> authorities, String expiryDate) {
-        this.authorities = authorities;
+    public AuthResponseDto(String expiryDate) {
         this.expiryDate = expiryDate;
     }
 }

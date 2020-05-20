@@ -27,7 +27,7 @@ public class DtoTests {
     @Test
     public void whenCreateDto_thenReturnAuthReponseDto() {
         // when
-        var result = new AuthResponseDto(Set.of(new SimpleGrantedAuthority("USER")),"100000");
+        var result = new AuthResponseDto("100000");
 
         // then
         assertThat(result.getExpiryDate()).isEqualTo("100000");
