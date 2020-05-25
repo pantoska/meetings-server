@@ -8,6 +8,7 @@ import com.ztp.mettings.user.dto.UserPersonalDataDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,13 @@ public class UserController {
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     ResponseEntity<UserInfoDto> getUserInfo(@CurrentUser UserPrincipal userPrincipal) {
         var result = userService.getUserInfo(userPrincipal.getId());
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    ResponseEntity<UserPersonalDataDto> getUserById(@PathVariable String id) {
+        var result = userService.getPersonalData(id);
         return ResponseEntity.ok(result);
     }
 
