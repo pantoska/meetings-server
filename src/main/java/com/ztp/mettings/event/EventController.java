@@ -46,11 +46,12 @@ public class EventController {
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     ResponseEntity<EventDto> updateEvent(
+            @PathVariable String id,
             @CurrentUser UserPrincipal userPrincipal,
             @RequestBody @Valid EventDto eventDto) {
-        var result = eventService.updateEvent(userPrincipal, eventDto);
+        var result = eventService.updateEvent(id, userPrincipal, eventDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

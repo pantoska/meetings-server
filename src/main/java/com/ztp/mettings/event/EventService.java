@@ -40,9 +40,9 @@ public class EventService {
         return commentEntity.toCommentDto();
     }
 
-    EventDto updateEvent(UserPrincipal userPrincipal, EventDto eventDto) {
+    EventDto updateEvent(String id, UserPrincipal userPrincipal, EventDto eventDto) {
         var userId = userPrincipal.getId();
-        var findEvent = findEventById(eventDto.getId());
+        var findEvent = findEventById(id);
 
         if (findEvent.getUserId().equals(userId)) {
 

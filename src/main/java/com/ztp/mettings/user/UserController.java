@@ -39,7 +39,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    ResponseEntity<UserPersonalDataDto> getUserById(@PathVariable String id) {
+    ResponseEntity<AdminPanelUserDataDto> getUserById(@PathVariable String id) {
         var result = userService.getPersonalData(id);
         return ResponseEntity.ok(result);
     }
@@ -60,7 +60,7 @@ public class UserController {
 
     @GetMapping("/me")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    ResponseEntity<UserPersonalDataDto> getPersonalData(@CurrentUser UserPrincipal userPrincipal) {
+    ResponseEntity<AdminPanelUserDataDto> getPersonalData(@CurrentUser UserPrincipal userPrincipal) {
         var result = userService.getPersonalData(userPrincipal.getId());
         return ResponseEntity.ok(result);
     }

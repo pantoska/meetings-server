@@ -42,9 +42,9 @@ public class UserService {
         }
     }
 
-    UserPersonalDataDto getPersonalData(String id) {
+    AdminPanelUserDataDto getPersonalData(String id) {
         var user = findByIdOrThrow404(id);
-        return user.toUserPersonalDataDto();
+        return user.toAdminPanelUserDataDto();
     }
 
     UserPersonalDataDto updateCurrentUser(String id, UpdateUserRequestDto requestDto) {
