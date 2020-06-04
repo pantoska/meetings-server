@@ -31,4 +31,16 @@ public class MapUserToDtoTests {
         assertThat(result.getFirstName()).isEqualTo("testName");
         assertThat(result.getLastName()).isEqualTo("testSurname");
     }
+
+    @Test
+    public void whenMapUserToDto_thenReturnAdminPanelUserDataDto() {
+        // given/when
+        var result = testedUser.toAdminPanelUserDataDto();
+
+        //then
+        assertThat(result.getFirstName()).isEqualTo("testName");
+        assertThat(result.getLastName()).isEqualTo("testSurname");
+        assertThat(result.getEmail()).isEqualTo("test@gmail.com");
+        assertThat(result.getRoles()).isEqualTo(Set.of(Role.ROLE_USER));
+    }
 }

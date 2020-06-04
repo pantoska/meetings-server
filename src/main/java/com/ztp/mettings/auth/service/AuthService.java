@@ -1,7 +1,6 @@
 package com.ztp.mettings.auth.service;
 
 import com.ztp.mettings.Constants;
-import com.ztp.mettings.auth.security.UserPrincipal;
 import com.ztp.mettings.error.common.BadRequestProblem;
 import com.ztp.mettings.error.common.ConflictProblem;
 import com.ztp.mettings.error.common.UnauthorizedProblem;
@@ -21,15 +20,11 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.security.Principal;
-import java.util.Collection;
 import java.util.Set;
 
 @Service

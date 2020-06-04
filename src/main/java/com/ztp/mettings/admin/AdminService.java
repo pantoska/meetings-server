@@ -51,7 +51,7 @@ public class AdminService {
         }
     }
 
-    private EventEntity findEventById(String id) {
+    public EventEntity findEventById(String id) {
         return eventRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundProblem("Event", "id",

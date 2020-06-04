@@ -3,11 +3,10 @@ package com.ztp.mettings.user;
 import com.ztp.mettings.user.dto.ApiResponseDto;
 import com.ztp.mettings.user.dto.AuthResponseDto;
 import com.ztp.mettings.user.dto.LoginRequestDto;
+import com.ztp.mettings.user.dto.RegisterRequestDto;
 import com.ztp.mettings.user.dto.UpdateUserRequestDto;
 import com.ztp.mettings.user.dto.UserInfoDto;
 import org.junit.jupiter.api.Test;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Date;
@@ -43,6 +42,16 @@ public class DtoTests {
         // then
         assertThat(result.getFirstName()).isEqualTo("Luke");
         assertThat(result.getLastName()).isEqualTo("Skywalker");
+    }
+
+    @Test
+    public void whenCreateDto_thenReturnRegisterRequestDto() {
+        // when
+        var result = new RegisterRequestDto("luke", "skywalker", "luke@gmail.com", "password", "password" );
+
+        // then
+        assertThat(result.getFirstName()).isEqualTo("luke");
+        assertThat(result.getLastName()).isEqualTo("skywalker");
     }
 
     @Test

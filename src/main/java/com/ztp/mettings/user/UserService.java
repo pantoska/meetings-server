@@ -1,10 +1,6 @@
 package com.ztp.mettings.user;
 
-import com.ztp.mettings.auth.security.UserPrincipal;
 import com.ztp.mettings.error.common.ResourceNotFoundProblem;
-import com.ztp.mettings.error.common.UnauthorizedProblem;
-import com.ztp.mettings.event.EventDto;
-import com.ztp.mettings.event.EventEntity;
 import com.ztp.mettings.user.dto.AdminPanelUserDataDto;
 import com.ztp.mettings.user.dto.UpdateUserRequestDto;
 import com.ztp.mettings.user.dto.UserInfoDto;
@@ -58,7 +54,7 @@ public class UserService {
         return user.toUserPersonalDataDto();
     }
 
-    private UserEntity findByIdOrThrow404(String id) {
+    public UserEntity findByIdOrThrow404(String id) {
         return userRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundProblem("User", "id", id));

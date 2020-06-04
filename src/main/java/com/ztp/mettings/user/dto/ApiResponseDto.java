@@ -1,6 +1,5 @@
 package com.ztp.mettings.user.dto;
 
-import com.ztp.mettings.user.UserEntity;
 import lombok.Getter;
 
 @Getter
