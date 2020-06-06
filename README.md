@@ -1,4 +1,4 @@
-# Mettings 
+# Mettings-Server 
 
 Aplikacja wspomagająca organizowanie spotkań lub wydarzeń, umożliwiająca użytkownikom przeglądanie i tworzenie wydarzeń z zdefiniowaniem potrzebnych informacji (opis, typ, miejsce wydarzenia, opcjonalne zdjęcie) oraz komentowanie danego wydarzenia.
 
@@ -28,7 +28,7 @@ Aplikacja umożliwia tworzenie konta, dzięki któremu użytkownik ma możliwoś
 Aplikacja była uruchamiana i testowana za pomocą środowiska Intellij IDEA
 
 Instalacja Java 11
-Instalacja MongoDB, np. z użyciem Dockera
+Instalacja MongoDB, lub poprzez użycie np. Dockera
 
 Wejście do katalogu z projektem
 ```bash
